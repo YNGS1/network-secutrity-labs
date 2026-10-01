@@ -42,11 +42,11 @@ arpspoof -i eth0 -t 192.168.100.20 -r 192.168.100.10
 
 `arpspoof` floods the victim with `arp reply 192.168.100.10 is-at 00:0c:29:bc:e2:2b` and the server with the mirror lie — both sides now believe the attacker is the other party.
 
-![arpspoof poisoning both directions](screenshots/01-arpspoof.png)
+![arpspoof poisoning both directions]<img width="913" height="544" alt="image" src="https://github.com/user-attachments/assets/a21b886e-938a-439e-9841-e213032645ff" />
 
 Wireshark on the attacker confirms the continuous ARP reply flood — the MITM is live:
 
-![ARP flood in Wireshark](screenshots/02-arp-flood.png)
+![ARP flood in Wireshark]<img width="945" height="741" alt="image" src="https://github.com/user-attachments/assets/e82795ed-c1cc-49d6-9395-255cd61bf93d" />
 
 ---
 
@@ -54,11 +54,12 @@ Wireshark on the attacker confirms the continuous ARP reply flood — the MITM i
 
 The victim's SSH session connects and works normally — it is routed **through the attacker**, so the MITM genuinely succeeded:
 
-![Victim SSH login succeeds](screenshots/03-ssh-login.png)
+![Victim SSH login succeeds]<img width="945" height="341" alt="image" src="https://github.com/user-attachments/assets/99b318c6-5cb0-4655-b5c9-dd794bb5d6e6" />
 
 But filtering the captured stream (`tcp.stream eq 1`) shows only **encrypted SSHv2** — protocol banners, key-exchange negotiation, Diffie-Hellman, then ciphertext. **No password anywhere:**
 
-![Encrypted SSHv2 in Wireshark](screenshots/04-ssh-encrypted.png)
+![Encrypted SSHv2 in Wireshark]<img width="625" height="922" alt="image" src="https://github.com/user-attachments/assets/dd6e779d-a189-4680-af19-70d997f76192" />
+
 
 ---
 
